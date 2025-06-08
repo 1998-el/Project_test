@@ -1,0 +1,62 @@
+// // Primary Colors
+// $primary-blue: #3f51b5;
+// $primary-blue-light: lighten($primary-blue, 10%);
+// $primary-blue-dark: darken($primary-blue, 7%);
+// $primary-dark: #1c1c1c;
+// $primary-dark-transparent: #1c1c1cd4;
+
+// // Secondary Colors
+// $secondary-blue: #1a237e;
+// $secondary-blue-dark: darken($secondary-blue, 5%);
+
+// // Status Colors
+// $success-green: #27ae60;
+// $error-red: #e74c3c;
+// $warning-yellow: #f1c40f;
+// $warning-yellow-dark: darken($warning-yellow, 10%);
+
+// // Neutral Colors
+// $light-gray: #e0dede;
+// $medium-gray: #bbbbbb;
+// $dark-gray: #616161;
+// $text-gray: #43434380;
+// $pure-white: #ffffff;
+// $pure-black: #000000;
+
+// // Transparent Colors
+// $light-transparent: rgba(255, 255, 255, 0.7);
+// $border-transparent: rgba(255, 255, 255, 0.15);
+// $dark-transparent: rgba(0, 0, 0, 0.25);
+// $blur-transparent: rgba(255, 255, 255, 0.05);
+// $blur-dark-transparent: rgba(255, 255, 255, 0.03);
+
+// // Component Specific Variables
+// $stepper-primary: $primary-dark-transparent;
+// $stepper-secondary: $secondary-blue;
+// $stepper-inactive: $light-gray;
+// $stepper-text: $text-gray;
+// $stepper-icon-active: $pure-white;
+// $stepper-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+// // Global Variables
+// $primary-color: $primary-blue;
+// $secondary-color: $secondary-blue;
+// $light-color: $light-transparent;
+// $dark-color: $light-gray;
+// $text-color: $medium-gray;
+// $border-color: $border-transparent;
+// $allowed-color: $success-green;
+// $forbidden-color: $error-red;
+// $warning-bg-color: $warning-yellow;
+// $warning-text-color: $pure-black;
+
+// $transition-speed: 0.3s;
+// $transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+// $shadow: 0 4px 16px $dark-transparent;
+
+
+// $arrow-size: 20px;
+// $mobile-arrow-size: 16px;
+// $fog-width: 40px;
+// $mobile-breakpoint: 768px;
+// $tablet-breakpoint: 1024px;

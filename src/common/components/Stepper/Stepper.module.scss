@@ -1,0 +1,298 @@
+$stepper-primary: #3f51b5;
+$stepper-secondary: #1a237e;
+$stepper-inactive: #f5f5f5;
+$stepper-text: #616161;
+$stepper-icon-active: white;
+$stepper-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+$arrow-size: 16px;
+$transition-speed: 0.3s ease;
+$fog-width: 40px;
+$mobile-breakpoint: 768px;
+
+.stepperContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  @media (max-width: $mobile-breakpoint) {
+    padding: 0 $fog-width;
+  }
+}
+
+.stepperArrow {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.stepperArrowStep {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $stepper-inactive;
+  color: $stepper-text;
+  padding: 0.8rem 1.5rem 0.8rem 1.8rem;
+  cursor: pointer;
+  transition: all $transition-speed;
+  min-width: 140px;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - #{$arrow-size}) 0%,
+    100% 50%,
+    calc(100% - #{$arrow-size}) 100%,
+    0% 100%,
+    #{$arrow-size} 50%
+  );
+  margin-left: -#{$arrow-size};
+  z-index: 1;
+  font-weight: 500;
+  font-size: 0.85rem;
+  box-shadow: $stepper-shadow;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:first-child {
+    margin-left: 0;
+    clip-path: polygon(
+      0% 0%,
+      calc(100% - #{$arrow-size}) 0%,
+      100% 50%,
+      calc(100% - #{$arrow-size}) 100%,
+      0% 100%
+    );
+    padding-left: 1.5rem;
+  }
+
+  &:last-child {
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% 50%,
+      100% 100%,
+      0% 100%,
+      #{$arrow-size} 50%
+    );
+    padding-right: 1.5rem;
+  }
+
+  &:hover:not(.stepperArrowStepDisabled) {
+    background-color: darken($stepper-inactive, 5%);
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.stepperArrowStepActive {
+  background: linear-gradient(135deg, $stepper-primary, $stepper-secondary);
+  color: white;
+  z-index: 3;
+  font-weight: 600;
+
+  &:hover {
+    background: linear-gradient(135deg, darken($stepper-primary, 5%), darken($stepper-secondary, 5%));
+  }
+}
+
+.stepperArrowStepCompleted {
+  background: linear-gradient(135deg, $stepper-secondary, darken($stepper-secondary, 5%));
+  color: white;
+  font-weight: 500;
+}
+
+.stepperArrowStepDisabled {
+  background-color: lighten($stepper-inactive, 3%);
+  color: #bdbdbd;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.stepperArrowContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  pointer-events: none;
+}
+
+.stepperArrowIcon {
+  font-size: 1.1rem;
+  transition: all $transition-speed;
+  display: flex;
+}
+
+.stepIcon {
+  color: $stepper-text;
+}
+
+.activeIcon,
+.completedIcon {
+  color: $stepper-icon-active;
+}
+
+.stepperArrowLabel {
+  font-size: 0.8rem;
+  text-align: center;
+  transition: all $transition-speed;
+  white-space: nowrap;
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .stepperContainer {
+    padding: 0 10px;
+  }
+
+  .stepperArrow {
+    scroll-snap-type: x mandatory;
+    padding: 12px 0;
+    gap: 8px;
+  }
+
+  .stepperArrowStep {
+    scroll-snap-align: center;
+    margin-left: 0;
+    clip-path: none !important;
+    border-radius: 50px !important;
+    min-width: 150px;
+    margin: 0;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+    width: auto;
+    border: none;
+
+    &:first-child,
+    &:last-child {
+      clip-path: none !important;
+    }
+
+    &.stepperArrowStepActive {
+      box-shadow: 0 4px 12px rgba(63, 81, 181, 0.25);
+    }
+  }
+
+  .stepperArrowLabel {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .stepperArrowIcon {
+    font-size: 1.1rem;
+  }
+
+  .fogEffect {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: $fog-width;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    }
+  }
+}
+
+@media (min-width: $mobile-breakpoint) and (max-width: 1024px) {
+  .stepperArrow {
+    padding: 15px 0;
+  }
+
+  .stepperArrowStep {
+    min-width: 160px;
+    padding: 1rem 1.8rem;
+    font-size: 0.9rem;
+    margin-left: -#{$arrow-size - 2};
+
+    &:first-child {
+      padding-left: 1.8rem;
+    }
+
+    &:last-child {
+      padding-right: 1.8rem;
+    }
+  }
+
+  .stepperArrowLabel {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .stepperArrowStep {
+    min-width: 180px;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+
+    &:first-child {
+      padding-left: 2rem;
+    }
+
+    &:last-child {
+      padding-right: 2rem;
+    }
+  }
+
+  .stepperArrowLabel {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba($stepper-primary, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba($stepper-primary, 0); }
+  100% { box-shadow: 0 0 0 0 rgba($stepper-primary, 0); }
+}
+
+.stepperArrowStepActive {
+  animation: pulse 1.5s infinite;
+  
+  @media (max-width: $mobile-breakpoint) {
+    animation: none;
+  }
+}
+
+
+.scrollHint {
+  display: none;
+  
+  @media (max-width: $mobile-breakpoint) {
+    display: block;
+    text-align: center;
+    color: $stepper-text;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+  40% {transform: translateX(-8px);}
+  60% {transform: translateX(-4px);}
+}

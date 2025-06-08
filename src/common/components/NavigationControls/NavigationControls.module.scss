@@ -1,0 +1,194 @@
+
+$stepper-primary: #1c1c1cd4;
+$stepper-secondary: #08086e;
+$stepper-inactive: #e0dede;
+$stepper-text: #43434380;
+$stepper-icon-active: white;
+$arrow-size: 20px;
+$transition-speed: 0.3s;
+$fog-width: 40px;
+
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: $stepper-primary;
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba($stepper-inactive, 0.2);
+}
+
+.selectedBenne {
+  padding: 1.5rem 2rem;
+}
+
+.title {
+  margin-bottom: 1.5rem;
+  color: $stepper-icon-active;
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.75rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: $fog-width;
+    height: 3px;
+    background: $stepper-secondary;
+    border-radius: 3px;
+  }
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailLabel {
+  font-size: 0.85rem;
+  color: rgba($stepper-icon-active, 0.7);
+  margin-bottom: 0.25rem;
+}
+
+.detailValue {
+  font-size: 1.1rem;
+  color: $stepper-icon-active;
+  font-weight: 600;
+
+  &.highlight {
+    color: lighten($stepper-secondary, 20%);
+  }
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: rgba($stepper-icon-active, 0.6);
+  padding-top: 1rem;
+  border-top: 1px solid rgba($stepper-inactive, 0.2);
+  line-height: 1.5;
+}
+
+.navButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.8rem 0;
+}
+
+.button {
+  min-width: 120px;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all $transition-speed ease;
+  cursor: pointer;
+  border: none;
+  color: $stepper-icon-active;
+
+  &.back {
+    background: darken($stepper-primary, 10%);
+    
+    &:hover:not(.disabled) {
+      background: $stepper-secondary;
+    }
+  }
+
+  &.continue {
+    background: lighten($stepper-secondary, 15%);
+    
+    &:hover:not(.disabled) {
+      background: $stepper-secondary;
+    }
+  }
+
+  &.disabled {
+    background: $stepper-text !important;
+    color: $stepper-inactive !important;
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  width: $arrow-size;
+  height: $arrow-size;
+  margin: 0 0.5rem;
+  transition: transform $transition-speed ease;
+}
+
+.button:hover:not(.disabled) {
+  .icon {
+    transform: translateX(0);
+  }
+  
+  &.back .icon {
+    transform: translateX(-4px);
+  }
+  
+  &.continue .icon {
+    transform: translateX(4px);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .selectedBenne {
+    padding: 1.25rem;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .navButtons {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .button {
+    min-width: 0;
+    flex: 1;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .navButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .button {
+    max-width: 100%;
+    width: 100%;
+  }
+}

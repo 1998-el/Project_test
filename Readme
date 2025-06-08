@@ -1,0 +1,74 @@
+# REMWASTE Dumpster Rental Application  
+
+This web application allows users to easily select and book dumpsters for various needs (construction sites, moving, debris removal, etc.).  
+It features a **clear and smooth interface**, a **mobile-first design**, **step-by-step navigation**, and an **interactive carousel** for selecting dumpsters.  
+
+The project is designed **modularly** to ensure optimal scalability and simplified maintenance.  
+
+---------------------------------------------------------------------------------
+
+## Summary  
+
+- [Main Features](#main-features)  
+- [Modular Architecture](#modular-architecture)  
+- [Modular CSS Approach](#modular-css-approach)  
+- [Naming Conventions for Props](#naming-conventions-for-props)  
+- [Accessibility](#accessibility)  
+- [Responsive Design](#responsive-design)  
+- [Installation & Development](#installation--development)  
+- [Testing](#testing)  
+- [Roadmap](#roadmap)  
+- [Best Practices](#best-practices)  
+
+----------------------------------------------------------------------------------
+
+## Main Features  
+
+- **Interactive dumpster selection via a carousel**  
+- **Three-step reservation process**  
+- **Automatic calculation of total prices including taxes**  
+- **Detailed display of technical specifications**  
+- **Responsive and mobile-first design**  
+
+---===========================================================================----
+
+## Modular Architecture  
+
+The application is based on a **modular component architecture**, facilitating **maintenance** and **scalability**.  
+
+### Key Components  
+
+#### 1. `BenneCarousel` — Selection Carousel  
+
+**Props:**  
+
+- `bennes`: List of available dumpsters  
+- `selectedBenne`: Currently selected dumpster  
+- `onSelectBenne`: Callback triggered upon selection  
+
+#### 2. `NavigationControls` — Navigation Controls  
+
+**Props:**  
+
+- `steps`: Configuration of different steps  
+- `activeStepId`: Identifier of the active step  
+- `onStepChange`: Handles step transition  
+- `onClearSelection`: Resets the selection  
+
+#### 3. `StepperBox` — Visual Step Indicator  
+
+**Props:**  
+
+- `steps`: List of steps  
+- `activeStepId`: Current step  
+- `onStepClick`: Direct navigation by clicking  
+
+---============================================================================---
+
+## Modular SCSS Approach  
+
+Ideal for preventing **class conflicts**, as seen in traditional global CSS. Each component has **its own SCSS file**, making maintenance easier.  
+
+### Style Isolation Strategy  
+
+- **Naming convention**: **Adapted BEM approach**, with a prefix per component  

@@ -1,0 +1,407 @@
+$primary-color: #3f51b5;
+$primary-color-light: lighten($primary-color, 10%);
+$primary-color-dark: darken($primary-color, 7%);
+$secondary-color: #1a237e;
+$light-color: rgba(255, 255, 255, 0.7);
+$dark-color: #e0e0e0;
+$text-color: #bbbbbb;
+$border-color: rgba(255, 255, 255, 0.15);
+$allowed-color: #27ae60;
+$forbidden-color: #e74c3c;
+$warning-bg-color: #f1c40f;
+$warning-text-color: #000;
+
+$transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+$shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+.benneCarouselContainer {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.benneDetails {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid $border-color;
+  text-align: center;
+
+  .priceDisplay {
+    font-size: 1.6rem;
+    font-weight: bold;
+
+    .price {
+      color: $dark-color;
+    }
+
+    .vat {
+      font-size: 0.9rem;
+      color: $text-color;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .transportCost {
+    margin-top: 0.5rem;
+    color: $text-color;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
+.carouselHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    color: $dark-color;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $text-color;
+    font-size: 1.1rem;
+  }
+}
+
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.navButton {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid $border-color;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: $transition;
+  color: $primary-color;
+  font-size: 1.4rem;
+
+  &:hover {
+    transform: scale(1.1);
+    background: $primary-color;
+    color: white;
+  }
+
+  &.prev {
+    position: absolute;
+    left: 0;
+  }
+
+  &.next {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.carouselTrack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0 4rem;
+
+  .benneCard {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+}
+
+.benneCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: $shadow;
+  transition: $transition;
+  cursor: pointer;
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $border-color;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &:not(.centerCard) {
+    opacity: 0.7;
+    transform: scale(0.9);
+    filter: brightness(0.95);
+    height: 90%;
+  }
+
+  &.centerCard {
+    transform: scale(1.1);
+    z-index: 1;
+    border-color: $primary-color;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: $primary-color;
+    }
+  }
+
+  &.selected {
+    border-color: $primary-color-light;
+    background: rgba($primary-color, 0.08);
+  }
+}
+
+.cardThumbnail {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.thumbnailPlaceholder {
+  width: 100%;
+  height: 140px;
+  background: rgba($primary-color, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary-color;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid $border-color;
+}
+
+.centerCard {
+  .cardThumbnail,
+  .thumbnailPlaceholder {
+    height: 180px;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    color: #fff;
+  }
+
+  .roadWarningBadge {
+    font-size: 0.8rem;
+  }
+}
+
+
+h3 {
+  color: $dark-color;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $border-color;
+  padding: 1rem 0;
+  margin-top: 1rem;
+
+  .detailItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: $text-color;
+
+    svg {
+      margin-right: 0.5rem;
+      color: $primary-color;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.allowed {
+      color: $allowed-color;
+      font-weight: 600;
+
+      svg {
+        color: $allowed-color;
+      }
+    }
+
+    &.forbidden {
+      color: $forbidden-color;
+      font-weight: 600;
+
+      svg {
+        color: $forbidden-color;
+      }
+    }
+  }
+}
+
+.centerCard .detailItem {
+  font-size: 1.05rem;
+}
+
+
+.selectButton {
+  background: $primary-color;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-top: 0.8rem;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.05rem;
+
+  &:hover {
+    background: $primary-color-dark;
+  }
+
+  &.selected {
+    background: $primary-color-light;
+  }
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 0.5rem;
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $border-color;
+    border: none;
+    cursor: pointer;
+    transition: $transition;
+
+    &.active {
+      background: $primary-color;
+      transform: scale(1.2);
+    }
+
+    &:hover:not(.active) {
+      background: lighten($primary-color, 20%);
+    }
+  }
+}
+
+.roadWarningBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: $warning-bg-color;
+  color: $warning-text-color;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.7rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  svg {
+    margin-right: 0.3rem;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .benneCard {
+    flex: 0 0 80%;
+
+    &:not(.centerCard) {
+      display: none;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carouselHeader {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .priceDisplay {
+    font-size: 1.4rem;
+  }
+
+  .detailItem {
+    font-size: 0.9rem;
+  }
+
+  .selectButton {
+    font-size: 0.95rem;
+  }
+
+  .roadWarningBadge {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .benneCard {
+    flex: 0 0 45%;
+
+    &:not(.centerCard) {
+      opacity: 0.6;
+      transform: scale(0.95);
+    }
+  }
+}
